@@ -1,0 +1,79 @@
+<!doctype html>
+<title>OpenID Connect authentication with Google</title>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="511406985315-ubm4a95t7qitdmmr1v6tv2rierms26hr.apps.googleusercontent.com">
+<link rel="stylesheet" href="index.css">
+
+<h1>random numbers</h1>
+
+<p>
+  “Get your random numbers here (but only if you're authorized).”
+  — an example of OpenID Connect authentication with Google
+</p>
+
+
+
+<section class="auth">
+  <h3>Auth</h3>
+  <div class="login">
+    Press the button to sign in:
+    <span class="g-signin2" data-onsuccess="onSignIn"></span>
+  </div>
+  <p class="greeting">
+    Signed in as: <span class="name">error</span>
+    <button onclick="signOut();">Sign out</button>
+  </p>
+  <p>
+    Roles: <span class="roles">not loaded</span>
+    <button onclick="loadRoles();">Refresh</button>
+    <button onclick="register();">Request authorization</button> <span class="register-status"></span>
+  </p>
+  <p>
+    Common error codes: 401 Unauthorized (not logged in), 403 Forbidden (not allowed).
+  </p>
+</section>
+
+<section class="random">
+  <h3>Current random number is: <span class="currvalue">loading…</span></h3>
+</section>
+
+<section class="admin">
+  <h3>Admin</h3>
+  <button onclick="loadLists();">Refresh lists</button>
+  <section>
+    Known users (roles):
+    <ul class="users known">
+      <template>
+        <li>
+          <span class="email">error</span>
+          (<span class="roles">error</span>)
+          <button onclick="deleteUser(this.parentElement, this.parentElement.children[0].textContent);">Delete</button>
+        </li>
+      </template>
+      <li>not loaded yet, press 'refresh'
+    </ul>
+  </section>
+  <section>
+    Authorization requests:
+    <ul class="users requesting">
+      <template>
+        <li>
+          <span class="email">error</span>
+          <button onclick="approveUser(this.parentElement, this.parentElement.children[0].textContent);">Approve</button>
+        </li>
+      </template>
+      <li>not loaded yet, press 'refresh'
+    </ul>
+  </section>
+</section>
+
+<section id="automatic">
+  <button onclick="runTests()">run automatic tests now</button>
+
+  <pre id=result>testing log will show here</pre>
+</section>
+
+
+
+<script src="index.js">
+</script>
